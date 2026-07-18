@@ -1,0 +1,20 @@
+name: CombatBot
+version: 1.0.0
+main: com.mcbot.combat.CombatBotPlugin
+api-version: '26.1'
+description: 마네킹 기반 PvP 연습용 전투봇 (난이도: 쉬움/보통/어려움/극악/불가능)
+author: You
+
+commands:
+  combatbot:
+    description: 전투봇을 소환하거나 제거합니다.
+    usage: |
+      /combatbot spawn <easy|normal|hard|brutal|impossible>
+      /combatbot remove
+      /combatbot removeall
+    permission: combatbot.use
+    permission-message: 이 명령어를 사용할 권한이 없습니다.
+
+permissions:
+  combatbot.use:
+    default: op
