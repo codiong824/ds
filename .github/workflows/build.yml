@@ -1,0 +1,32 @@
+name: Build XiaoEgo Plugin
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 코드 체크아웃
+        uses: actions/checkout@v4
+
+      - name: JDK 25 설치
+        uses: actions/setup-java@v5
+        with:
+          distribution: 'temurin'
+          java-version: '25'
+          cache: 'maven'
+
+      - name: 설치된 자바 버전 확인
+        run: java -version
+
+      - name: Maven 빌드 (mvn clean package)
+        run: mvn -B clean package
+
+      - name: 빌드된 jar 업로드
+        uses: actions/upload-artifact@v4
+        with:
+          name: XiaoEgo-jar
+          path: target/*.jar
